@@ -37,7 +37,7 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: var(--pink-soft);
@@ -74,14 +74,14 @@
         .hero-section {
             background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%);
             border-radius: 0 0 40px 40px;
-            padding: 80px 0 60px;
+            padding: 60px 0 40px;
         }
 
         .btn-pink {
             background-color: var(--pink-main);
             color: white;
             border-radius: 50px;
-            padding: 12px 30px;
+            padding: 10px 24px;
             font-weight: 600;
             border: none;
             box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
@@ -99,7 +99,7 @@
             border: 2px solid var(--pink-main);
             color: var(--pink-main);
             border-radius: 50px;
-            padding: 10px 25px;
+            padding: 8px 20px;
             font-weight: 600;
             background: transparent;
             transition: all 0.3s ease;
@@ -113,24 +113,24 @@
         /* Product Cards */
         .card-product {
             border: none;
-            border-radius: 20px;
+            border-radius: 18px;
             background: white;
-            box-shadow: 0 8px 25px rgba(255, 182, 193, 0.2);
+            box-shadow: 0 6px 20px rgba(255, 182, 193, 0.2);
             transition: all 0.3s ease;
             overflow: hidden;
             height: 100%;
         }
 
         .card-product:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(255, 105, 180, 0.3);
         }
 
         .product-img-wrapper {
             position: relative;
             overflow: hidden;
-            border-radius: 20px 20px 0 0;
-            height: 220px;
+            border-radius: 18px 18px 0 0;
+            height: 170px;
         }
 
         .product-img-wrapper img {
@@ -146,22 +146,50 @@
 
         .badge-cute {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(255, 255, 255, 0.9);
+            top: 8px;
+            left: 8px;
+            background: rgba(255, 255, 255, 0.92);
             color: var(--pink-main);
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Responsif khusus layar HP (2 Kolom) */
+        @media (max-width: 576px) {
+            .product-img-wrapper {
+                height: 135px;
+            }
+            .card-product .card-body {
+                padding: 12px !important;
+            }
+            .product-title {
+                font-size: 0.85rem !important;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                min-height: 2.4em;
+            }
+            .product-desc {
+                display: none;
+            }
+            .product-price {
+                font-size: 0.9rem !important;
+            }
+            .btn-cart-sm {
+                padding: 4px 10px !important;
+                font-size: 0.75rem !important;
+            }
         }
 
         /* Feature Section */
         .feature-box {
             background: white;
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 18px;
             box-shadow: 0 5px 20px rgba(255, 182, 193, 0.15);
             text-align: center;
             transition: all 0.3s ease;
@@ -172,16 +200,16 @@
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--pink-soft);
             color: var(--pink-main);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 15px;
+            font-size: 1.3rem;
+            margin: 0 auto 12px;
         }
 
         /* Cart Drawer Offcanvas */
@@ -191,8 +219,8 @@
         }
 
         .cart-item-img {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
             border-radius: 12px;
         }
@@ -200,20 +228,20 @@
         /* Footer */
         footer {
             background: white;
-            border-radius: 40px 40px 0 0;
+            border-radius: 30px 30px 0 0;
             box-shadow: 0 -5px 25px rgba(255, 182, 193, 0.2);
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             background: var(--pink-soft);
             color: var(--pink-main);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin: 0 5px;
+            margin: 0 4px;
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -263,43 +291,43 @@
                     <span class="badge bg-white text-danger shadow-sm rounded-pill px-3 py-2 mb-3">
                         <i class="fa-solid fa-sparkles me-1"></i> New Glow Up Collection 2026
                     </span>
-                    <h1 class="display-4 fw-bold mb-3">Pancarkan Pesona Cantik Alamimu ✨</h1>
-                    <p class="lead text-muted mb-4">Temukan koleksi makeup aesthetic, vegan, dan cruelty-free terbaik untuk melengkapi harimu agar makin percaya diri! 🌸</p>
-                    <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+                    <h1 class="display-5 fw-bold mb-3">Pancarkan Pesona Cantik Alamimu ✨</h1>
+                    <p class="lead text-muted mb-4 fs-6">Temukan koleksi makeup aesthetic, vegan, dan cruelty-free terbaik untuk melengkapi harimu agar makin percaya diri! 🌸</p>
+                    <div class="d-flex justify-content-center justify-content-lg-start gap-2">
                         <a href="#products" class="btn btn-pink">Belanja Sekarang 🛍️</a>
                         <a href="#features" class="btn btn-outline-pink">Cek Promo 🎁</a>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=800" alt="Hero Makeup" class="img-fluid rounded-4 shadow-lg" style="border: 8px solid white; max-height: 400px; object-fit: cover;">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=800" alt="Hero Makeup" class="img-fluid rounded-4 shadow-lg" style="border: 6px solid white; max-height: 350px; object-fit: cover;">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FEATURES SECTION -->
-    <section id="features" class="py-5">
+    <section id="features" class="py-4">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-box">
+            <div class="row g-3">
+                <div class="col-4 col-md-4">
+                    <div class="feature-box p-2 p-md-3">
                         <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
-                        <h5 class="fw-bold">100% Original</h5>
-                        <p class="text-muted small m-0">Jaminan produk asli langsung dari brand resmi terpercaya.</p>
+                        <h6 class="fw-bold mb-1 fs-6">100% Original</h6>
+                        <p class="text-muted small m-0 d-none d-md-block">Jaminan produk asli langsung dari brand terpercaya.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
+                <div class="col-4 col-md-4">
+                    <div class="feature-box p-2 p-md-3">
                         <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
-                        <h5 class="fw-bold">Gratis Ongkir</h5>
-                        <p class="text-muted small m-0">Bebas biaya kirim ke seluruh Indonesia dengan min. belanja Rp 100k.</p>
+                        <h6 class="fw-bold mb-1 fs-6">Gratis Ongkir</h6>
+                        <p class="text-muted small m-0 d-none d-md-block">Bebas biaya kirim ke seluruh Indonesia.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
+                <div class="col-4 col-md-4">
+                    <div class="feature-box p-2 p-md-3">
                         <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
-                        <h5 class="fw-bold">Cruelty-Free</h5>
-                        <p class="text-muted small m-0">Aman untuk kulit sensitif dan tidak diuji pada hewan 🐰.</p>
+                        <h6 class="fw-bold mb-1 fs-6">Cruelty-Free</h6>
+                        <p class="text-muted small m-0 d-none d-md-block">Aman untuk kulit & tidak diuji pada hewan 🐰.</p>
                     </div>
                 </div>
             </div>
@@ -307,30 +335,30 @@
     </section>
 
     <!-- PRODUCTS SECTION -->
-    <section id="products" class="py-5">
+    <section id="products" class="py-4">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="font-dancing display-5 fw-bold text-pink-main" style="color: var(--pink-main);">Produk Favorit Bestie 🎀</h2>
-                <p class="text-muted">Pilihan kosmetik paling hits bulan ini untuk melengkapi gaya kamu!</p>
+            <div class="text-center mb-4">
+                <h2 class="font-dancing display-6 fw-bold text-pink-main" style="color: var(--pink-main);">Produk Favorit Bestie 🎀</h2>
+                <p class="text-muted small">Pilihan kosmetik paling hits bulan ini untuk melengkapi gaya kamu!</p>
             </div>
 
-            <div class="row g-4" id="productList">
-                <!-- Produk akan di-render otomatis oleh JavaScript -->
+            <div class="row g-2 g-md-3" id="productList">
+                <!-- Produk di-render oleh JavaScript -->
             </div>
         </div>
     </section>
 
     <!-- CONTACT / NEWSLETTER SECTION -->
-    <section id="contact" class="py-5">
+    <section id="contact" class="py-4">
         <div class="container">
-            <div class="p-5 rounded-4 text-center text-white" style="background: linear-gradient(135deg, #FF69B4, #FFB6C1); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);">
+            <div class="p-4 p-md-5 rounded-4 text-center text-white" style="background: linear-gradient(135deg, #FF69B4, #FFB6C1); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);">
                 <h3 class="font-dancing display-6 fw-bold mb-2">Mau Voucher Diskon 20%? 💌</h3>
-                <p class="mb-4">Daftarkan email kamu untuk mendapatkan promo eksklusif & update tren beauty!</p>
+                <p class="mb-3 small">Daftarkan email kamu untuk mendapatkan promo eksklusif & update tren beauty!</p>
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <form onsubmit="alert('Terima kasih sudah berlangganan! Kode voucher dikirim ke email 💖'); return false;" class="d-flex gap-2">
-                            <input type="email" class="form-control rounded-pill px-4" placeholder="Ketik email kamu di sini..." required>
-                            <button type="submit" class="btn btn-dark rounded-pill px-4 fw-bold">Kirim</button>
+                            <input type="email" class="form-control rounded-pill px-3" placeholder="Ketik email kamu..." required>
+                            <button type="submit" class="btn btn-dark rounded-pill px-4 fw-bold text-nowrap">Kirim</button>
                         </form>
                     </div>
                 </div>
@@ -339,21 +367,21 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="pt-5 pb-4 mt-5">
+    <footer class="pt-4 pb-3 mt-4">
         <div class="container">
-            <div class="row g-4">
+            <div class="row g-3">
                 <div class="col-lg-4 text-center text-lg-start">
-                    <h3 class="font-dancing fw-bold text-pink-main" style="color: var(--pink-main);">PinkGlow Beauty ✨</h3>
-                    <p class="text-muted small">Toko makeup impian setiap wanita. Menghadirkan kecantikan alami dengan sentuhan warna-warni cantik & aman.</p>
+                    <h4 class="font-dancing fw-bold text-pink-main" style="color: var(--pink-main);">PinkGlow Beauty ✨</h4>
+                    <p class="text-muted small mb-2">Toko makeup impian setiap wanita. Menghadirkan kecantikan alami dengan sentuhan warna-warni cantik & aman.</p>
                     <div class="mb-3">
                         <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/6287846926310" target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <h6 class="fw-bold mb-3">Metode Pembayaran 💳</h6>
-                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                    <h6 class="fw-bold mb-2">Metode Pembayaran 💳</h6>
+                    <div class="d-flex justify-content-center gap-1 flex-wrap">
                         <span class="badge bg-light text-dark border p-2">QRIS</span>
                         <span class="badge bg-light text-dark border p-2">BCA Transfer</span>
                         <span class="badge bg-light text-dark border p-2">ShopeePay</span>
@@ -362,12 +390,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
-                    <h6 class="fw-bold mb-3">Jam Operasional ⏰</h6>
+                    <h6 class="fw-bold mb-2">Jam Operasional ⏰</h6>
                     <p class="text-muted small mb-1">Senin - Sabtu: 09.00 - 20.00 WIB</p>
-                    <p class="text-muted small">Pengiriman dari Jakarta Selatan 📍</p>
+                    <p class="text-muted small m-0">Pengiriman dari Jakarta Selatan 📍</p>
                 </div>
             </div>
-            <hr class="my-4 text-pink-light">
+            <hr class="my-3 text-pink-light">
             <div class="text-center text-muted small">
                 &copy; 2026 PinkGlow Beauty Store. Made with 💕 for All Beautiful Girls.
             </div>
@@ -431,7 +459,7 @@
             },
             {
                 id: 4,
-                name: "Cute Cushion Foundation SPF30 👑",
+                name: "Cute Cushion SPF30 👑",
                 price: 155000,
                 badge: "High Coverage 🌟",
                 img: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&q=80&w=500",
@@ -443,11 +471,11 @@
                 price: 69000,
                 badge: "Favorite 💖",
                 img: "https://images.unsplash.com/photo-1591360236480-4ed861025fa1?auto=format&fit=crop&q=80&w=500",
-                desc: "Melentikkan & menebalkan bulu mata secara instan, tidak anti badai!"
+                desc: "Melentikkan & menebalkan bulu mata secara instan, tidak luntur."
             },
             {
                 id: 6,
-                name: "Pink Velvet Makeup Brush Set 🖌️",
+                name: "Pink Velvet Brush Set 🖌️",
                 price: 120000,
                 badge: "Must Have 🎀",
                 img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=500",
@@ -469,19 +497,19 @@
 
             products.forEach(p => {
                 container.innerHTML += `
-                    <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <div class="card card-product">
                             <div class="product-img-wrapper">
                                 <span class="badge-cute">${p.badge}</span>
                                 <img src="${p.img}" alt="${p.name}">
                             </div>
-                            <div class="card-body d-flex flex-column p-4">
-                                <h5 class="card-title fw-bold fs-6 mb-1">${p.name}</h5>
-                                <p class="text-muted small mb-3 flex-grow-1">${p.desc}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="fw-bold text-pink-main fs-5" style="color: var(--pink-main);">${formatRupiah(p.price)}</span>
-                                    <button onclick="addToCart(${p.id})" class="btn btn-pink rounded-pill px-3 py-1 btn-sm">
-                                        + Keranjang
+                            <div class="card-body d-flex flex-column p-3">
+                                <h5 class="card-title fw-bold product-title mb-1">${p.name}</h5>
+                                <p class="text-muted small product-desc mb-2 flex-grow-1">${p.desc}</p>
+                                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-1 mt-auto">
+                                    <span class="fw-bold text-pink-main product-price" style="color: var(--pink-main);">${formatRupiah(p.price)}</span>
+                                    <button onclick="addToCart(${p.id})" class="btn btn-pink rounded-pill btn-cart-sm px-2 py-1">
+                                        + Beli
                                     </button>
                                 </div>
                             </div>
@@ -584,7 +612,7 @@
                 return;
             }
 
-            const noHP = "6287846926310"; // Ganti dengan nomor WhatsApp Toko kamu
+            const noHP = "6287846926310"; // Nomor WhatsApp Toko
             let pesanan = "Halo PinkGlow Beauty ✨, saya mau pesan makeup dong:\n\n";
 
             let total = 0;
