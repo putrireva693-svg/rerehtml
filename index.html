@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Toko Sederhana</title>
+<style>
+:root {
+--primary: #4f46e5;
+--primary-hover: #4338ca;
+--bg-color: #f3f4f6;
+--card-bg: #ffffff;
+--text-color: #1f2937;
+--border-color: #e5e7eb;
+}
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.page {
+display: none;
+width: 100%;
+max-width: 480px;
+background: var(--card-bg);
+min-height: 100vh;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+position: relative;
+flex-direction: column;
+}
+@media (min-width: 481px) {
+.page {
+min-height: 85vh;
+border-radius: 12px;
+overflow: hidden;
+}
+}
+.active {
+display: flex;
+}
+/* Form Login */
+.login-container {
+padding: 40px 24px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: 100%;
+margin: auto;
+width: 100%;
+}
+.login-container h2 {
+margin-bottom: 24px;
+text-align: center;
+color: var(--primary);
+}
+.form-group {
+margin-bottom: 16px;
+}
+.form-group label {
+display: block;
+margin-bottom: 6px;
+font-size: 14px;
+font-weight: 500;
+}
+.form-group input, .form-group select {
+width: 100%;
+padding: 10px 14px;
+border: 1px solid var(--border-color);
+border-radius: 6px;
+font-size: 14px;
+}
+.btn {
+width: 100%;
+padding: 10px 16px;
+background-color: var(--primary);
+color: white;
+border: none;
+border-radius: 6px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: background-color 0.2s;
+}
+.btn:hover {
+background-color: var(--primary-hover);
+}
+.btn-secondary {
+background-color: #6b7280;
+}
+.btn-secondary:hover {
+background-color: #4b5563;
+}
+/* Header Dashboard */
+.header {
+padding: 16px 20px;
+background: white;
+border-bottom: 1px solid var(--border-color);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.header h3 {
+font-size: 16px;
+color: var(--primary);
+}
+/* Halaman Belanja */
+.shopping-body {
+padding: 20px;
+overflow-y: auto;
+flex: 1;
+padding-bottom: 80px;
+}
+.product-card {
+background: white;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+overflow: hidden;
+margin-bottom: 20px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.product-img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+background-color: #e5e7eb;
+}
+.product-info {
+padding: 16px;
+}
+.product-title {
+font-size: 16px;
+font-weight: 600;
+margin-bottom: 8px;
+}
+.product-price {
+color: #059669;
+font-weight: 600;
+margin-bottom: 12px;
+}
+/* Keranjang Floating / Bottom Bar */
+.cart-bar {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+background: white;
+border-top: 1px solid var(--border-color);
+padding: 16px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+/* Modal / Checkout Screen */
+.checkout-container {
+padding: 20px;
+overflow-y: auto;
+flex: 1;
+}
+.summary-item {
+display: flex;
+justify-content: space-between;
+margin-bottom: 8px;
+font-size: 14px;
+}
+.total-row {
+font-weight: bold;
+font-size: 16px;
+border-top: 1px solid var(--border-color);
+padding-top: 8px;
+margin-top: 8px;
+}
+/* Halaman Admin */
+.admin-body {
+padding: 20px;
+overflow-y: auto;
+flex: 1;
+}
+.admin-stats {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+margin-bottom: 20px;
+}
+.stat-card {
+background: white;
+padding: 16px;
+border-radius: 8px;
+border: 1px solid var(--border-color);
+text-align: center;
+}
+.stat-card h4 {
+font-size: 12px;
+color: #6b7280;
+margin-bottom: 4px;
+}
+.stat-card span {
+font-size: 18px;
+font-weight: bold;
+color: var(--primary);
+}
+table {
+width: 100%;
+border-collapse: collapse;
+background: white;
+border-radius: 8px;
+overflow: hidden;
+border: 1px solid var(--border-color);
+font-size: 13px;
+}
+th, td {
+padding: 10px 12px;
+text-align: left;
+border-bottom: 1px solid var(--border-color);
+}
+th {
+background-color: #f9fafb;
+font-weight: 600;
+}
+</style>
+</head>
+<body>
+<!-- 1. HALAMAN LOGIN -->
+<div id="pageLogin" class="page active">
+<div class="login-container">
+<h2>Login Sistem</h2>
+<div class="form-group">
+<label>Username / Role</label>
+<select id="loginRole">
+<option value="belanja">Pembeli (Belanja)</option>
+<option value="admin">Administrator</option>
+</select>
+</div>
+<div class="form-group">
+<label>Password</label>
+<input type="password" id="loginPass" placeholder="Bebas, contoh: 123">
+</div>
+<button class="btn" onclick="handleLogin()">Masuk</button>
+</div>
+</div>
+<!-- 2. HALAMAN BELANJA -->
+<div id="pageBelanja" class="page">
+<div class="header">
+<h3>Katalog Belanja</h3>
+<button class="btn btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;" onclick="logout()">Keluar</button>
+</div>
+<div class="shopping-body">
+<!-- Produk 1 -->
+<div class="product-card">
+<img src="[https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80](https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80)" alt="Headphone" class="product-img">
+<div class="product-info">
+<div class="product-title">Headphone Wireless Premium</div>
+<div class="product-price">Rp 250.000</div>
+<button class="btn" onclick="addToCart('Headphone Wireless Premium', 250000)">Tambah ke Keranjang</button>
+</div>
+</div>
+<!-- Produk 2 -->
+<div class="product-card">
+<img src="[https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80](https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80)" alt="Jam Tangan" class="product-img">
+<div class="product-info">
+<div class="product-title">Jam Tangan Minimalis</div>
+<div class="product-price">Rp 150.000</div>
+<button class="btn" onclick="addToCart('Jam Tangan Minimalis', 150000)">Tambah ke Keranjang</button>
+</div>
+</div>
+</div>
+<div class="cart-bar">
+<div>
+<span style="font-size: 14px; color: #6b7280;">Keranjang: </span>
+<strong id="cartCount">0 item</strong>
+</div>
+<button class="btn" style="width: auto;" onclick="goToCheckout()">Checkout</button>
+</div>
+</div>
+<!-- 3. HALAMAN CHECKOUT & PAYMENT -->
+<div id="pageCheckout" class="page">
+<div class="header">
+<h3>Konfirmasi Pembayaran</h3>
+<button class="btn btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;" onclick="switchPage('pageBelanja')">Kembali</button>
+</div>
+<div class="checkout-container">
+<h4 style="margin-bottom: 12px; font-size: 14px; color: #4b5563;">Ringkasan Pesanan</h4>
+<div id="cartSummaryList">
+<!-- Diisi via Javascript -->
+</div>
+<div style="margin-top: 20px;">
+<label style="display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500;">Pilih Metode Pembayaran</label>
+<div class="form-group">
+<select id="paymentMethod">
+<option value="Transfer Bank">Transfer Bank</option>
+<option value="QRIS">QRIS</option>
+<option value="COD">COD (Bayar di Tempat)</option>
+</select>
+</div>
+</div>
+<button class="btn" style="margin-top: 20px;" onclick="processCheckout()">Bayar Sekarang</button>
+</div>
+</div>
+<!-- 4. HALAMAN ADMIN -->
+<div id="pageAdmin" class="page">
+<div class="header">
+<h3>Panel Admin</h3>
+<button class="btn btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;" onclick="logout()">Keluar</button>
+</div>
+<div class="admin-body">
+<div class="admin-stats">
+<div class="stat-card">
+<h4>Total Pendapatan</h4>
+<span id="adminRevenue">Rp 0</span>
+</div>
+<div class="stat-card">
+<h4>Pesanan Masuk</h4>
+<span id="adminOrderCount">0</span>
+</div>
+</div>
+<h4 style="margin-bottom: 10px; font-size: 14px;">Daftar Transaksi Terbaru</h4>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Metode</th>
+<th>Total</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="adminOrderTable">
+<tr>
+<td colspan="4" style="text-align: center; color: #6b7280;">Belum ada transaksi</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<script>
+// State Aplikasi Sederhana
+let cart = [];
+let totalRevenue = 0;
+let totalOrders = 0;
+let orderHistory = [];
+function switchPage(pageId) {
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.getElementById(pageId).classList.add('active');
+}
+function handleLogin() {
+const role = document.getElementById('loginRole').value;
+if (role === 'belanja') {
+switchPage('pageBelanja');
+} else {
+switchPage('pageAdmin');
+updateAdminDashboard();
+}
+}
+function logout() {
+cart = [];
+document.getElementById('cartCount').innerText = '0 item';
+switchPage('pageLogin');
+}
+function addToCart(name, price) {
+cart.push({ name, price });
+document.getElementById('cartCount').innerText = cart.length + ' item';
+alert(name + ' berhasil ditambahkan ke keranjang!');
+}
+function goToCheckout() {
+if (cart.length === 0) {
+alert('Keranjang masih kosong!');
+return;
+}
+let summaryHtml = '';
+let subtotal = 0;
+cart.forEach(item => {
+summaryHtml += <div class="summary-item"><span>${item.name}</span><span>Rp ${item.price.toLocaleString('id-ID')}</span></div>;
+subtotal += item.price;
+});
+summaryHtml += <div class="summary-item total-row"> <span>Total Pembayaran</span> <span>Rp ${subtotal.toLocaleString('id-ID')}</span> </div>;
+document.getElementById('cartSummaryList').innerHTML = summaryHtml;
+switchPage('pageCheckout');
+}
+function processCheckout() {
+const method = document.getElementById('paymentMethod').value;
+let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+// Update data admin
+totalRevenue += subtotal;
+totalOrders += 1;
+orderHistory.push({
+id: '#ORD-' + Math.floor(100 + Math.random() * 900),
+method: method,
+total: subtotal,
+status: 'Berhasil'
+});
+alert('Checkout berhasil via ' + method + '! Terima kasih sudah berbelanja.');
+cart = [];
+document.getElementById('cartCount').innerText = '0 item';
+switchPage('pageBelanja');
+}
+function updateAdminDashboard() {
+document.getElementById('adminRevenue').innerText = 'Rp ' + totalRevenue.toLocaleString('id-ID');
+document.getElementById('adminOrderCount').innerText = totalOrders;
+let tableHtml = '';
+if (orderHistory.length === 0) {
+tableHtml = <tr><td colspan="4" style="text-align: center; color: #6b7280;">Belum ada transaksi</td></tr>;
+} else {
+orderHistory.forEach(ord => {
+tableHtml += <tr> <td>${ord.id}</td> <td>${ord.method}</td> <td>Rp ${ord.total.toLocaleString('id-ID')}</td> <td><span style="color: #059669; font-weight: 500;">${ord.status}</span></td> </tr>;
+});
+}
+document.getElementById('adminOrderTable').innerHTML = tableHtml;
+}
+</script>
+</body>
+</html>
